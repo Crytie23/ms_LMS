@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="navbar.css">
-    <title>SeatAble</title>
+    <title>Learning Modular System</title>
     <style>
        .signup-form {
             padding: 20px;
@@ -58,8 +58,14 @@
      <div class=" signup-form">
 <form method="POST">
         <h2>Signup</h2>
+        <input type="text" name="Firstname" placeholder="Firstname" required>
+        <input type="text" name="Lastname" placeholder="Lastname" required>
+        <select name="gender" required>
+            <option value="" disabled selected hidden>Select Gender</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
         <input type="text" name="username" placeholder="Username" required>
-        
         <input type="password" name="password" placeholder="Password" required>
 
         <select name="role" required>
