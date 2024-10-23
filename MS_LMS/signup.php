@@ -55,7 +55,7 @@
         <a href="about.html">About Us</a>
         <a href="Login.php">Home</a> 
      </div>
-     <div class=" signup-form">
+     <div class="signup-form">
 <form method="POST">
         <h2>Signup</h2>
         <input type="text" name="Firstname" placeholder="Firstname" required>
@@ -71,7 +71,6 @@
         <select name="role" required>
             <option value="" disabled selected hidden>Select Role</option>
             <option value="student">Student</option>
-            <option value="parent">Parent</option>
             <option value="teacher">Teacher</option>
         </select>
 
