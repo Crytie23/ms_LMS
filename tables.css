@@ -1,0 +1,75 @@
+.filter-container {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-container label {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.filter-container select {
+    padding: 5px;
+    font-size: 16px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background-color: #0DC965;
+    color: white;
+}
+td, th {
+    border: 1px solid #ddd; 
+}
+.verify-btn {
+    background-color: #ff9800;
+    color: white;
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+    font-size: 20px;
+  }
+  
+  .verify-btn[data-verified="true"] {
+    background-color: #4caf50;
+  }
+  
+  .verify-btn:hover {
+    background-color: #fb8c00;
+  }
+  .disable-btn {
+    background-color: red;
+    color: white;
+    border-radius: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 5px;
+    font-size: 20px;
+  }
+  
+  .disable-btn[data-verified="true"] {
+    background-color: grey;
+  }
+  
+  .disable-btn:hover {
+    background-color: #fb0000a1;
+  }
