@@ -99,32 +99,5 @@
     </div>
     </div>
     <script src="rows_color.js"></script>
-    <script>
-
-    const disableButtons = document.querySelectorAll('.disable-btn');
-
-    disableButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-        const row = event.target.closest('tr');
-        const name = `${row.cells[1].textContent} ${row.cells[2].textContent}`; // Combine first and last name
-        const isDisabled = button.getAttribute('data-verified') === 'true'; // Reuse the data attribute to track the status
-
-        if (!isDisabled) {
-            // Change the button text to "Disabled" and change its color
-            button.textContent = 'Disabled';
-            button.style.backgroundColor = '#f44336'; // Red color for disabled
-            button.setAttribute('data-verified', 'true'); // Mark as disabled
-
-            // Optional: Send disable status to the server using AJAX or any other method
-            alert(`${name} has been disabled.`);
-        } else {
-            alert(`${name} is already disabled.`);
-        }
-    });
-});
-</script>
-
-
-
 </body>
 </html>
