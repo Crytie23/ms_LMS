@@ -99,35 +99,6 @@
     </div>
     </div>
     <script src="rows_color.js"></script>
-    <script>
-    const verifyButtons = document.querySelectorAll('.verify-btn');
-  
-  verifyButtons.forEach(button => {
-    button.addEventListener('click', (event) => {
-      const row = event.target.closest('tr');
-      const name = row.cells[0].textContent;
-      const isVerified = button.getAttribute('data-verified') === 'true';
-
-      if (!isVerified) {
-        // Change the button text to "Verified" and change its color
-        button.textContent = 'Verified';
-        button.style.backgroundColor = '#4caf50'; // Green color for verified
-        button.setAttribute('data-verified', 'true');
-
-        // Optional: Send verification status to the server using AJAX or any other method
-        // Example:
-        // const email = row.cells[2].textContent;
-        // sendVerificationStatusToServer(email, true); // This function would make an AJAX call
-
-        alert(`${name} has been verified.`);
-      } else {
-        alert(`${name} is already verified.`);
-      }
-    });
-  });
-</script>
-
-
 
 </body>
 </html>
