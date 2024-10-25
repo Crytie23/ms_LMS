@@ -1,3 +1,43 @@
+<?php
+include 'connect.php';
+
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Get form data
+    $first_name = $_POST['Firstname'];
+    $last_name = $_POST['Lastname'];
+    $gender = $_POST['gender'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $role = $_POST['role'];
+
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Set the default status to 'pending'
+    if ($role === 'Admin') {
+        $status = 'Active';
+    } else {
+        $status = 'Pending';
+    }
+
+    // Prepare the SQL statement to insert into the users table
+    $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, gender, username, password, role, status) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssss", $first_name, $last_name, $gender, $username, $hashed_password, $role, $status);
+
+    // Execute the statement and handle the result
+    if ($stmt->execute()) {
+        echo "Signup successful! Your account is pending verification.";
+        header("Location: login.php");
+        exit();
+    }
+
+    $stmt->close();
+}
+
+$conn->close();
+?>
 
 <!DOCTYPE html>
 <html>
@@ -60,18 +100,21 @@
         <h2>Signup</h2>
         <input type="text" name="Firstname" placeholder="Firstname" required>
         <input type="text" name="Lastname" placeholder="Lastname" required>
+        
         <select name="gender" required>
             <option value="" disabled selected hidden>Select Gender</option>
-            <option value="M">Male</option>
-            <option value="F">Female</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
         </select>
         <input type="text" name="username" placeholder="Username" required>
         <input type="password" name="password" placeholder="Password" required>
 
         <select name="role" required>
             <option value="" disabled selected hidden>Select Role</option>
-            <option value="student">Student</option>
-            <option value="teacher">Teacher</option>
+            <option value="Student">Student</option>
+            <option value="Teacher">Teacher</option>
+            <option value="Admin">Admin</option>
         </select>
 
         <button type="submit">Signup</button>

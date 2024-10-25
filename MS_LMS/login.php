@@ -1,3 +1,44 @@
+<?php
+session_start();
+
+include 'connect.php';
+$errorMessage = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Prepare SQL to fetch user
+    $sql = "SELECT user_id, username, password, role, status FROM users WHERE username = ? LIMIT 1";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+            if ($user['status'] === 'Active') {
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['role'] = $user['role'];
+                
+                if ($user['role'] === 'Admin') {
+                    $_SESSION['admin_id'] = $admin_id;
+                    header("Location: admin_dashboard.php");
+                } else if ($user['role'] === 'Teacher') {
+                    header("Location: teacher_dashboard.php");
+                } else {
+                    header("Location: student_dashboard.php");
+                }
+                exit();
+            } else {
+                $errorMessage = "Your account is not active. Please contact the administrator.";
+            }
+    } else {
+        $errorMessage = "Invalid username or password.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head> 
